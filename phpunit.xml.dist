@@ -10,6 +10,7 @@
 
     <php>
         <server name="KERNEL_CLASS" value="Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel" />
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="disabled"/>
     </php>
 
     <testsuites>
