@@ -1,0 +1,8 @@
+parameters:
+    level: 0
+    paths:
+        - src
+        - tests
+includes:
+	- vendor/jangregor/phpstan-prophecy/src/extension.neon
+	- vendor/phpstan/phpstan-phpunit/extension.neon
