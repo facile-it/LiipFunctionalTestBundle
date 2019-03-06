@@ -2,7 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
+/*
+ * This file is part of the Liip/FunctionalTestBundle
+ *
+ * (c) Lukas Kahwe Smith <smith@pooteeweet.org>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
+namespace Facile\SymfonyFunctionalTestCase\Tests;
 
 use Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel;
 use Facile\SymfonyFunctionalTestCase\WebTestCase;
@@ -71,7 +80,7 @@ class WebTestCaseTest extends WebTestCase
 
         try {
             $this->assertStatusCode(-1, $client);
-        
+
             $this->fail('Test failed, no exception thrown');
         } catch (AssertionFailedError $e) {
             $this->assertStringStartsWith(

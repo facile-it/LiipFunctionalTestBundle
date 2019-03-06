@@ -11,10 +11,10 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
+namespace Facile\SymfonyFunctionalTestCase\Tests;
 
-use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Facile\SymfonyFunctionalTestCase\Tests\AppConfigLeanFramework\AppConfigLeanFrameworkKernel;
+use Facile\SymfonyFunctionalTestCase\WebTestCase;
 
 /**
  * Test Lean Framework - with validator component disabled.
@@ -41,26 +41,5 @@ class WebTestCaseConfigLeanFrameworkTest extends WebTestCase
         $client->request('GET', $path);
 
         $this->assertStatusCode(200, $client);
-    }
-
-    public function testAssertValidationErrorsTriggersError(): void
-    {
-        $client = static::makeClient();
-
-        $path = '/form';
-        $client->request('GET', $path);
-
-        try {
-            $this->assertValidationErrors([], $client->getContainer());
-        } catch (\Exception $e) {
-            $this->assertSame(
-                'Method Facile\SymfonyFunctionalTestCase\Utils\HttpAssertions::assertValidationErrors() can not be used as the validation component of the Symfony framework is disabled.',
-                $e->getMessage()
-            );
-
-            return;
-        }
-
-        $this->fail('Test failed.');
     }
 }
