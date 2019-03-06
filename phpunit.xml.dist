@@ -1,24 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- https://phpunit.de/manual/3.7/en/appendixes.configuration.html -->
 <phpunit
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.5/phpunit.xsd"
+    xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/7.5/phpunit.xsd"
     bootstrap="tests/App/bootstrap.php"
     colors="true"
     beStrictAboutOutputDuringTests="true"
 >
 
     <php>
-        <server name="KERNEL_CLASS" value="Liip\FunctionalTestBundle\Tests\App\AppKernel" />
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
+        <server name="KERNEL_CLASS" value="Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel" />
     </php>
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>tests/Command</directory>
-            <directory>tests/DependencyInjection</directory>
-            <directory>tests/Test</directory>
+            <directory>tests</directory>
         </testsuite>
     </testsuites>
 
@@ -27,10 +23,4 @@
             <directory>src</directory>
         </whitelist>
     </filter>
-
-    <groups>
-        <exclude>
-            <group>mysql</group>
-        </exclude>
-    </groups>
 </phpunit>
