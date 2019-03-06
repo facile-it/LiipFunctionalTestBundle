@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
 
-use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Facile\SymfonyFunctionalTestCase\Tests\AppConfigLeanFramework\AppConfigLeanFrameworkKernel;
 
 /**

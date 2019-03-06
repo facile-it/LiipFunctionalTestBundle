@@ -15,7 +15,7 @@ namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
 
 use Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle;
 use Doctrine\ORM\Tools\SchemaTool;
-use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Facile\SymfonyFunctionalTestCase\Tests\AppConfigPhpcr\AppConfigPhpcrKernel;
 
 /**

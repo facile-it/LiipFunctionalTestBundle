@@ -16,7 +16,7 @@ namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
 use Doctrine\Common\Annotations\Annotation\IgnoreAnnotation;
 use Facile\SymfonyFunctionalTestCase\Annotations\DisableDatabaseCache;
 use Facile\SymfonyFunctionalTestCase\Annotations\QueryCount;
-use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Facile\SymfonyFunctionalTestCase\Tests\AppConfig\AppConfigKernel;
 
 /**
@@ -123,7 +123,7 @@ class WebTestCaseConfigTest extends WebTestCase
             'secured_area');
 
         $this->assertInstanceOf(
-            'Facile\SymfonyFunctionalTestCase\Test\WebTestCase',
+            'Facile\SymfonyFunctionalTestCase\WebTestCase',
             $loginAs
         );
 

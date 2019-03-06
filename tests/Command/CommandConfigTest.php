@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Facile\SymfonyFunctionalTestCase\Tests\Command;
 
-use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use Facile\SymfonyFunctionalTestCase\Tests\AppConfig\AppConfigKernel;
 use Symfony\Component\Console\Tester\CommandTester;
 
