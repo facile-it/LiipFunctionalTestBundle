@@ -4,7 +4,10 @@ phpstan:
 code-style-fix:
 	@vendor/bin/php-cs-fixer fix --verbose --ansi
 
-tests:
+test:
 	@vendor/bin/phpunit
 
-pre-commit-check: code-style-fix phpstan tests
+test-stop-on-failure:
+	@vendor/bin/phpunit --stop-on-failure
+
+pre-commit-check: code-style-fix phpstan test
