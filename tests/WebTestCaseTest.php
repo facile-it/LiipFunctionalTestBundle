@@ -71,6 +71,19 @@ class WebTestCaseTest extends WebTestCase
         $this->assertStatusCode(200, $client);
     }
 
+    /**
+     * @depends testIndex
+     */
+    public function testIndexAssertIsSuccessful(): void
+    {
+        $path = '/';
+        $client = static::createClient();
+
+        $client->request('GET', $path);
+
+        $this->assertStatusCodeIsSuccessful($client);
+    }
+
     public function testAssertStatusCodeFail(): void
     {
         $path = '/';
@@ -103,21 +116,5 @@ class WebTestCaseTest extends WebTestCase
         $client->request('GET', $path);
 
         $this->assertStatusCode(404, $client);
-        $this->isSuccessful($client->getResponse(), false);
-    }
-
-    public function testJsonIsSuccessful(): void
-    {
-        $client = static::createClient();
-
-        $path = '/json';
-
-        $client->request('GET', $path);
-
-        $this->isSuccessful(
-            $client->getResponse(),
-            true,
-            'application/json'
-        );
     }
 }

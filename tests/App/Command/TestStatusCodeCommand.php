@@ -25,7 +25,7 @@ class TestStatusCodeCommand extends ContainerAwareCommand
     {
         parent::configure();
 
-        $this->setName('liipfunctionaltestbundle:test-status-code')
+        $this->setName('facileitsymfonyfunctionaltestcase:test-status-code')
             ->setDescription('Test command');
     }
 

@@ -1,22 +1,14 @@
-liipfunctionaltestbundle_homepage:
+facileitsymfonyfunctionaltestcase_homepage:
     path:  /
     defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::indexAction' }
 
-liipfunctionaltestbundle_user:
+facileitsymfonyfunctionaltestcase_user:
     path:  /user/{userId}
     defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::userAction' }
     requirements:
         userId: \d+
 
-liipfunctionaltestbundle_form:
-    path:  /form
-    defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::formAction' }
-
-liipfunctionaltestbundle_form_with_embed:
-    path:  /form-with-embed
-    defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::formWithEmbedAction' }
-
-liipfunctionaltestbundle_json:
+facileitsymfonyfunctionaltestcase_json:
     path:  /json
     defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::jsonAction' }
     requirements:

@@ -2,17 +2,9 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of the Liip/FunctionalTestBundle
- *
- * (c) Lukas Kahwe Smith <smith@pooteeweet.org>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Facile\SymfonyFunctionalTestCase\Tests\App;
 
+use Facile\SymfonyFunctionalTestCase\Tests\App\AcmeBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
@@ -25,13 +17,7 @@ class AppKernel extends Kernel
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
-            new \Symfony\Bundle\MonologBundle\MonologBundle(),
-            new \Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
-            new \Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new \Facile\SymfonyFunctionalTestCase\LiipFunctionalTestBundle(),
-            new \Facile\SymfonyFunctionalTestCase\Tests\App\AcmeBundle(),
-            new \Nelmio\Alice\Bridge\Symfony\NelmioAliceBundle(),
-            new \Fidry\AliceDataFixtures\Bridge\Symfony\FidryAliceDataFixturesBundle(),
+            new AcmeBundle(),
         ];
 
         return $bundles;
@@ -48,18 +34,18 @@ class AppKernel extends Kernel
         });
     }
 
-    public function getCacheDir()
+    public function getCacheDir(): string
     {
         return $this->getBaseDir().'cache';
     }
 
-    public function getLogDir()
+    public function getLogDir(): string
     {
         return $this->getBaseDir().'log';
     }
 
-    protected function getBaseDir()
+    protected function getBaseDir(): string
     {
-        return sys_get_temp_dir().'/LiipFunctionalTestBundle/'.(new \ReflectionClass($this))->getShortName().'/var/';
+        return sys_get_temp_dir().'/facile-it-testcase/'.(new \ReflectionClass($this))->getShortName().'/var/';
     }
 }

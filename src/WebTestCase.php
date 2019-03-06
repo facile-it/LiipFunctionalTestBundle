@@ -19,6 +19,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ResettableContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
@@ -26,16 +27,10 @@ abstract class WebTestCase extends BaseWebTestCase
     protected $environment = 'test';
 
     /** @var ContainerInterface[] */
-    protected $containers;
+    protected $containers = [];
 
     /**
      * Builds up the environment to run the given command.
-     *
-     * @param string $name
-     * @param array  $params
-     * @param bool   $reuseKernel
-     *
-     * @return CommandTester
      */
     protected function runCommand(string $name, array $params = [], bool $reuseKernel = false): CommandTester
     {
@@ -58,8 +53,6 @@ abstract class WebTestCase extends BaseWebTestCase
             array_merge(['command' => $command->getName()], $params),
             [
                 'interactive' => false,
-                'decorated' => $this->getDecorated(),
-                'verbosity' => $this->getVerbosityLevel(),
             ]
         );
 
@@ -97,13 +90,29 @@ abstract class WebTestCase extends BaseWebTestCase
      * Asserts that the HTTP response code of the last request performed by
      * $client matches the expected code. If not, raises an error with more
      * information.
-     *
-     * @param int    $expectedStatusCode
-     * @param Client $client
      */
-    public static function assertStatusCode(int $expectedStatusCode, Client $client): void
+    public function assertStatusCode(int $expectedStatusCode, Client $client): void
     {
-        HttpAssertions::assertStatusCode($expectedStatusCode, $client);
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response, 'Response missing from client');
+        $this->assertSame($expectedStatusCode, $response->getStatusCode());
+    }
+
+    protected function assertStatusCodeIsSuccessful(Client $client): void
+    {
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response, 'Response missing from client');
+        $this->assertTrue($response->isSuccessful(), 'HTTP status code not successful: ' . $response->getStatusCode());
+    }
+
+    protected function assertStatusCodeIsRedirect(Client $client): void
+    {
+        $response = $client->getResponse();
+
+        $this->assertInstanceOf(Response::class, $response, 'Response missing from client');
+        $this->assertTrue($response->isRedirect(), 'HTTP status code not a redirect: ' . $response->getStatusCode());
     }
 
     protected function tearDown(): void

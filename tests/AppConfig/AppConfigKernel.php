@@ -2,25 +2,7 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of the Liip/FunctionalTestBundle
- *
- * (c) Lukas Kahwe Smith <smith@pooteeweet.org>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace Facile\SymfonyFunctionalTestCase\Tests\AppConfig;
-
-/*
- * This file is part of the Liip/FunctionalTestBundle
- *
- * (c) Lukas Kahwe Smith <smith@pooteeweet.org>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
 
 use Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel;
 use Symfony\Component\Config\Loader\LoaderInterface;

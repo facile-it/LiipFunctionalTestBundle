@@ -17,39 +17,6 @@ framework:
     profiler:
         collect: false
 
-monolog:
-    handlers:
-        main:
-            type:         fingers_crossed
-            action_level: error
-            handler:      nested
-        nested:
-            type:  stream
-            path:  "%kernel.logs_dir%/%kernel.environment%.log"
-            level: debug
-
-liip_functional_test: ~
-
-doctrine:
-    dbal:
-        driver: pdo_sqlite
-        path: "%kernel.cache_dir%/test.db"
-        charset: UTF8
-    orm:
-        default_entity_manager: default
-        entity_managers:
-            default:
-                connection: default
-                mappings:
-                    LiipFunctionalTestBundle:
-                        type: php
-                        dir: "%kernel.root_dir%/../App/Entity"
-                        prefix: 'Facile\SymfonyFunctionalTestCase\Tests\App\Entity'
-                    LiipFunctionalTestBundleYml:
-                        type: "yml"
-                        dir: "%kernel.root_dir%/../App/Resources/config/doctrine"
-                        prefix: 'Facile\SymfonyFunctionalTestCase\Tests\App\Entity'
-
 security:
     encoders:
         # in_memory users
@@ -57,24 +24,19 @@ security:
         # User entity
         Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User: plaintext
     providers:
-        chain_provider:
-            chain:
-                providers: [in_memory, main]
         in_memory:
             memory:
                 users:
                     foobar:
                         password: "12341234"
                         roles: 'ROLE_USER'
-        main:
-            entity: { class: Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User, property: id }
     firewalls:
         secured_area:
             pattern:  ^/
             anonymous: true
             http_basic:
                 realm: "Admin Area"
-            provider: chain_provider
+            provider: in_memory
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
@@ -82,9 +44,6 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-    Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\:
-        resource: 'DataFixtures/ORM/*'
-        tags: ['doctrine.fixture.orm']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestCommand:
         tags: ['console.command']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestStatusCodeCommand:
