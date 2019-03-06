@@ -1,48 +1,30 @@
 <?php
 
-$header = <<<'HEADER'
-This file is part of the Liip/FunctionalTestBundle
+$additionalRules = [
+    'declare_strict_types' => true,
+    'no_superfluous_phpdoc_tags' => true,
+    'php_unit_construct' => true,
+    'php_unit_dedicate_assert' => true,
+    'phpdoc_trim_consecutive_blank_line_separation' => true,
+    'psr4' => true,
+    'random_api_migration' => true,
+    'self_accessor' => true,
+];
+$rulesProvider = new Facile\CodingStandards\Rules\CompositeRulesProvider([
+    new Facile\CodingStandards\Rules\DefaultRulesProvider(),
+    new Facile\CodingStandards\Rules\ArrayRulesProvider($additionalRules),
+]);
 
-(c) Lukas Kahwe Smith <smith@pooteeweet.org>
+$config = PhpCsFixer\Config::create();
+$config->setRules($rulesProvider->getRules());
 
-This source file is subject to the MIT license that is bundled
-with this source code in the file LICENSE.
-HEADER;
+$config->setUsingCache(true);
+$config->setRiskyAllowed(true);
 
-$finder = PhpCsFixer\Finder::create()
-    ->in(__DIR__)
-    ->notPath('/cache/')
-;
+$autoloadPathProvider = new Facile\CodingStandards\AutoloadPathProvider();
 
-return PhpCsFixer\Config::create()
-    ->setFinder($finder)
-    ->setRiskyAllowed(true)
-    ->setRules([
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        'array_syntax' => [
-            'syntax' => 'short',
-        ],
-        'combine_consecutive_issets' => true,
-        'combine_consecutive_unsets' => true,
-        'header_comment' => [
-            'header' => $header,
-        ],
-        'no_extra_consecutive_blank_lines' => true,
-        'no_php4_constructor' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_imports' => true,
-        'phpdoc_order' => true,
-        '@PHP56Migration' => true,
-        '@PHP56Migration:risky' => true,
-        '@PHP70Migration' => true,
-        '@PHP70Migration:risky' => true,
-        '@PHP71Migration' => true,
-        '@PHP71Migration:risky' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
-        'php_unit_strict' => true,
-    ])
-    ->setUsingCache(true)
-;
+$finder = PhpCsFixer\Finder::create();
+$finder->in($autoloadPathProvider->getPaths());
+$config->setFinder($finder);
+
+return $config;
