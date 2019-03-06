@@ -35,6 +35,7 @@ jobs:
   include:
     - name: Code coverage
       php: 7.3
+      before_install: []
       script:
         - vendor/bin/phpunit --verbose --coverage-clover=build/logs/clover.xml
       after_success:
