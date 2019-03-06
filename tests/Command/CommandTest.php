@@ -41,7 +41,7 @@ class CommandTest extends WebTestCase
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test', [], true);
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertContains('Environment: test', $this->commandTester->getDisplay());
         $this->assertContains('Verbosity level: NORMAL', $this->commandTester->getDisplay());
@@ -53,7 +53,7 @@ class CommandTest extends WebTestCase
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         // Test default values
         $this->assertContains('Environment: test', $this->commandTester->getDisplay());
@@ -80,7 +80,7 @@ class CommandTest extends WebTestCase
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertContains('Verbosity level: NORMAL', $this->commandTester->getDisplay());
 
@@ -100,7 +100,7 @@ class CommandTest extends WebTestCase
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertEmpty($this->commandTester->getDisplay());
         $this->assertNotContains('Verbosity level: NORMAL', $this->commandTester->getDisplay());
@@ -119,7 +119,7 @@ class CommandTest extends WebTestCase
         $this->assertFalse($this->getDecorated());
 
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
@@ -136,7 +136,7 @@ class CommandTest extends WebTestCase
 
         $this->isDecorated(false);
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
@@ -152,7 +152,7 @@ class CommandTest extends WebTestCase
         $this->assertSame(OutputInterface::VERBOSITY_VERBOSE, $this->getVerbosityLevel());
 
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
@@ -172,7 +172,7 @@ class CommandTest extends WebTestCase
         $this->assertFalse($this->getDecorated());
 
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
@@ -192,7 +192,7 @@ class CommandTest extends WebTestCase
         $this->assertFalse($this->getDecorated());
 
         $this->commandTester = $this->runCommand('liipfunctionaltestbundle:test');
-        $this->assertEquals(0, $this->commandTester->getStatusCode());
+        $this->assertSame(0, $this->commandTester->getStatusCode());
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
@@ -208,7 +208,7 @@ class CommandTest extends WebTestCase
 
         $this->assertInstanceOf(CommandTester::class, $this->commandTester);
 
-        $this->assertEquals(10, $this->commandTester->getStatusCode());
+        $this->assertSame(10, $this->commandTester->getStatusCode());
     }
 
     /**

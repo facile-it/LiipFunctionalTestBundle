@@ -193,7 +193,7 @@ class WebTestCaseConfigMysqlTest extends WebTestCase
         // Check that there are 2 users.
         $this->assertSame(
             2,
-            count($em->getRepository('LiipFunctionalTestBundle:User')
+            \count($em->getRepository('LiipFunctionalTestBundle:User')
                 ->findAll())
         );
 
@@ -203,7 +203,7 @@ class WebTestCaseConfigMysqlTest extends WebTestCase
         // The exclusion from purge worked, the user table is still alive and well.
         $this->assertSame(
             2,
-            count($em->getRepository('LiipFunctionalTestBundle:User')
+            \count($em->getRepository('LiipFunctionalTestBundle:User')
                 ->findAll())
         );
     }
@@ -269,7 +269,7 @@ class WebTestCaseConfigMysqlTest extends WebTestCase
         // The purge worked: there is no user.
         $this->assertSame(
             0,
-            count($em->getRepository('LiipFunctionalTestBundle:User')
+            \count($em->getRepository('LiipFunctionalTestBundle:User')
                 ->findAll())
         );
     }
@@ -304,7 +304,7 @@ class WebTestCaseConfigMysqlTest extends WebTestCase
 
         $this->assertSame(
             10,
-            count($users)
+            \count($users)
         );
 
         /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */

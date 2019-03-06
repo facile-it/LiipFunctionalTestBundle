@@ -338,7 +338,7 @@ EOF;
         // There are 2 users.
         $this->assertSame(
             2,
-            count($users)
+            \count($users)
         );
 
         /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */
@@ -426,7 +426,7 @@ EOF;
         // The two files with fixtures have been loaded, there are 4 users.
         $this->assertSame(
             4,
-            count($users)
+            \count($users)
         );
     }
 
@@ -453,7 +453,7 @@ EOF;
         // The two files with fixtures have been loaded, there are 4 users.
         $this->assertSame(
             4,
-            count($users)
+            \count($users)
         );
     }
 
@@ -485,7 +485,7 @@ EOF;
 
         $this->assertSame(
             10,
-            count($users)
+            \count($users)
         );
 
         /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */
@@ -585,7 +585,7 @@ EOF;
 
         $this->assertSame(
             10,
-            count($users)
+            \count($users)
         );
 
         /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */
@@ -627,7 +627,7 @@ EOF;
 
         $this->assertSame(
             10,
-            count($users)
+            \count($users)
         );
     }
 
