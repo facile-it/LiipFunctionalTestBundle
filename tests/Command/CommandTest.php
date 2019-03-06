@@ -11,9 +11,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Liip\FunctionalTestBundle\Tests\Command;
+namespace Facile\SymfonyFunctionalTestCase\Tests\Command;
 
-use Liip\FunctionalTestBundle\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Tester\CommandTester;
 

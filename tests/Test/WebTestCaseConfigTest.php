@@ -11,13 +11,13 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Liip\FunctionalTestBundle\Tests\Test;
+namespace Facile\SymfonyFunctionalTestCase\Tests\Test;
 
 use Doctrine\Common\Annotations\Annotation\IgnoreAnnotation;
-use Liip\FunctionalTestBundle\Annotations\DisableDatabaseCache;
-use Liip\FunctionalTestBundle\Annotations\QueryCount;
-use Liip\FunctionalTestBundle\Test\WebTestCase;
-use Liip\FunctionalTestBundle\Tests\AppConfig\AppConfigKernel;
+use Facile\SymfonyFunctionalTestCase\Annotations\DisableDatabaseCache;
+use Facile\SymfonyFunctionalTestCase\Annotations\QueryCount;
+use Facile\SymfonyFunctionalTestCase\Test\WebTestCase;
+use Facile\SymfonyFunctionalTestCase\Tests\AppConfig\AppConfigKernel;
 
 /**
  * Tests that configuration has been loaded and users can be logged in.
@@ -113,7 +113,7 @@ class WebTestCaseConfigTest extends WebTestCase
     public function testIndexAuthenticationLoginAs(): void
     {
         $fixtures = $this->loadFixtures([
-            'Liip\FunctionalTestBundle\Tests\App\DataFixtures\ORM\LoadUserData',
+            'Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\LoadUserData',
         ]);
 
         /** @var \Doctrine\Common\DataFixtures\ReferenceRepository $repository */
@@ -123,7 +123,7 @@ class WebTestCaseConfigTest extends WebTestCase
             'secured_area');
 
         $this->assertInstanceOf(
-            'Liip\FunctionalTestBundle\Test\WebTestCase',
+            'Facile\SymfonyFunctionalTestCase\Test\WebTestCase',
             $loginAs
         );
 
@@ -156,12 +156,12 @@ class WebTestCaseConfigTest extends WebTestCase
      * There will be 2 queries, in the configuration the limit is 1,
      * an Exception will be thrown.
      *
-     * @expectedException \Liip\FunctionalTestBundle\Exception\AllowedQueriesExceededException
+     * @expectedException \Facile\SymfonyFunctionalTestCase\Exception\AllowedQueriesExceededException
      */
     public function testAllowedQueriesExceededException(): void
     {
         $fixtures = $this->loadFixtures([
-            'Liip\FunctionalTestBundle\Tests\App\DataFixtures\ORM\LoadUserData',
+            'Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\LoadUserData',
         ]);
 
         /** @var \Doctrine\Common\DataFixtures\ReferenceRepository $repository */
@@ -187,12 +187,12 @@ class WebTestCaseConfigTest extends WebTestCase
      * There will be 1 query, in the annotation the limit is 0,
      * an Exception will be thrown.
      *
-     * @expectedException \Liip\FunctionalTestBundle\Exception\AllowedQueriesExceededException
+     * @expectedException \Facile\SymfonyFunctionalTestCase\Exception\AllowedQueriesExceededException
      */
     public function testAnnotationAndException(): void
     {
         $this->loadFixtures([
-            'Liip\FunctionalTestBundle\Tests\App\DataFixtures\ORM\LoadUserData',
+            'Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\LoadUserData',
         ]);
 
         $this->client = static::makeClient();
@@ -224,7 +224,7 @@ class WebTestCaseConfigTest extends WebTestCase
             $fixtures
         );
 
-        /** @var \Liip\FunctionalTestBundle\Tests\App\Entity\User $user */
+        /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */
         $user = $fixtures['id1'];
 
         // The custom provider has not been used successfully.
@@ -238,7 +238,7 @@ class WebTestCaseConfigTest extends WebTestCase
             '@AcmeBundle/DataFixtures/ORM/user_with_custom_provider.yml',
         ]);
 
-        /** @var \Liip\FunctionalTestBundle\Tests\App\Entity\User $user */
+        /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user */
         $user = $fixtures['id1'];
 
         // The custom provider "foo" has been loaded and used successfully.
@@ -258,7 +258,7 @@ class WebTestCaseConfigTest extends WebTestCase
         $databaseFilePath = $this->getContainer()->getParameter('kernel.cache_dir').'/test_sqlite_'.$md5.'.db';
 
         $fixtures = [
-            'Liip\FunctionalTestBundle\Tests\App\DataFixtures\ORM\LoadDependentUserData',
+            'Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\LoadDependentUserData',
         ];
 
         $this->loadFixtures($fixtures);
@@ -266,7 +266,7 @@ class WebTestCaseConfigTest extends WebTestCase
         // Load data from database
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-        /** @var \Liip\FunctionalTestBundle\Tests\App\Entity\User $user1 */
+        /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user1 */
         $user1 = $em->getRepository('LiipFunctionalTestBundle:User')->findOneBy(['id' => 1]);
 
         // Store random data, in order to check it after reloading fixtures.
@@ -277,7 +277,7 @@ class WebTestCaseConfigTest extends WebTestCase
         // Reload the fixtures.
         $this->loadFixtures($fixtures);
 
-        /** @var \Liip\FunctionalTestBundle\Tests\App\Entity\User $user1 */
+        /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user1 */
         $user1 = $em->getRepository('LiipFunctionalTestBundle:User')->findOneBy(['id' => 1]);
 
         //The salt are not the same because cache were not used
@@ -293,7 +293,7 @@ class WebTestCaseConfigTest extends WebTestCase
         $md5 = '0ded9d8daaeaeca1056b18b9d0d433b2';
 
         $fixtures = [
-            'Liip\FunctionalTestBundle\Tests\App\DataFixtures\ORM\LoadDependentUserData',
+            'Facile\SymfonyFunctionalTestCase\Tests\App\DataFixtures\ORM\LoadDependentUserData',
         ];
 
         $this->loadFixtures($fixtures);
@@ -301,7 +301,7 @@ class WebTestCaseConfigTest extends WebTestCase
         // Load data from database
         $em = $this->getContainer()->get('doctrine.orm.entity_manager');
 
-        /** @var \Liip\FunctionalTestBundle\Tests\App\Entity\User $user1 */
+        /** @var \Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User $user1 */
         $user1 = $em->getRepository('LiipFunctionalTestBundle:User')
             ->findOneBy(['id' => 1]);
 

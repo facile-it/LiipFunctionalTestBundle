@@ -11,12 +11,12 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace Liip\FunctionalTestBundle\Test;
+namespace Facile\SymfonyFunctionalTestCase\Test;
 
 use Doctrine\Common\DataFixtures\Executor\AbstractExecutor;
 use Doctrine\Common\DataFixtures\ProxyReferenceRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Liip\FunctionalTestBundle\Utils\HttpAssertions;
+use Facile\SymfonyFunctionalTestCase\Utils\HttpAssertions;
 use PHPUnit\Framework\MockObject\MockBuilder;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
