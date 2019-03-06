@@ -19,7 +19,7 @@ class CommandTest extends WebTestCase
         $commandTester = $this->runCommand('facileitsymfonyfunctionaltestcase:test');
 
         // Test default values
-        $this->assertContains('Environment: test', $commandTester->getDisplay());
+        $this->assertStringContainsString('Environment: test', $commandTester->getDisplay());
 
         // Run command and reuse kernel
         $commandTester = $this->runCommand('facileitsymfonyfunctionaltestcase:test', [], true);
@@ -27,7 +27,7 @@ class CommandTest extends WebTestCase
         $this->assertInstanceOf(CommandTester::class, $commandTester);
         $this->assertSame(0, $commandTester->getStatusCode());
 
-        $this->assertContains('Environment: test', $commandTester->getDisplay());
+        $this->assertStringContainsString('Environment: test', $commandTester->getDisplay());
     }
 
     public function testRunCommandWithoutOptionsAndNotReuseKernel(): void
@@ -39,7 +39,7 @@ class CommandTest extends WebTestCase
         $this->assertSame(0, $commandTester->getStatusCode());
 
         // Test default values
-        $this->assertContains('Environment: test', $commandTester->getDisplay());
+        $this->assertStringContainsString('Environment: test', $commandTester->getDisplay());
 
         // Run command and not reuse kernel
         $this->environment = 'prod';
@@ -47,7 +47,7 @@ class CommandTest extends WebTestCase
 
         $this->assertInstanceOf(CommandTester::class, $commandTester);
 
-        $this->assertContains('Environment: prod', $commandTester->getDisplay());
+        $this->assertStringContainsString('Environment: prod', $commandTester->getDisplay());
     }
 
     public function testRunCommandStatusCode(): void

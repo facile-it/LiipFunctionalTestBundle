@@ -5,7 +5,8 @@ framework:
     secret:          secret
     test: ~
     router:          { resource: "%kernel.root_dir%/../App/routing.yml" }
-    form:            true
+    form:            false
+    validation:      false
     csrf_protection: true
     templating:      { engines: ['twig'] }
     session:

@@ -16,6 +16,7 @@ namespace Facile\SymfonyFunctionalTestCase\Tests;
 use Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel;
 use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class WebTestCaseTest extends WebTestCase
@@ -91,21 +92,10 @@ class WebTestCaseTest extends WebTestCase
 
         $client->request('GET', $path);
 
-        try {
-            $this->assertStatusCode(-1, $client);
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('-1');
 
-            $this->fail('Test failed, no exception thrown');
-        } catch (AssertionFailedError $e) {
-            $this->assertStringStartsWith(
-                'HTTP/1.1 200 OK',
-                $e->getMessage()
-            );
-
-            $this->assertStringEndsWith(
-                'Failed asserting that 200 matches expected -1.',
-                $e->getMessage()
-            );
-        }
+        $this->assertStatusCode(-1, $client);
     }
 
     public function test404Error(): void
