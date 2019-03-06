@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
-$loader = require __DIR__.'/../../vendor/autoload.php';
+$loader = require __DIR__ . '/../../vendor/autoload.php';
 
 AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 

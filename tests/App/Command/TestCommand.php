@@ -28,18 +28,14 @@ class TestCommand extends ContainerAwareCommand
         $this->container = $this->getContainer();
     }
 
-    /**
-     * @param InputInterface  $input
-     * @param OutputInterface $output
-     */
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         // Symfony version check
         $version = Kernel::VERSION_ID;
-        $output->writeln('Symfony version: '.$version);
-        $output->writeln('Environment: '.$this->container->get('kernel')->getEnvironment());
-        $output->writeln('Verbosity level set: '.$output->getVerbosity());
+        $output->writeln('Symfony version: ' . $version);
+        $output->writeln('Environment: ' . $this->container->get('kernel')->getEnvironment());
+        $output->writeln('Verbosity level set: ' . $output->getVerbosity());
 
-        $output->writeln('Environment: '.$this->container->get('kernel')->getEnvironment());
+        $output->writeln('Environment: ' . $this->container->get('kernel')->getEnvironment());
     }
 }

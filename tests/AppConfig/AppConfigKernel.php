@@ -18,6 +18,6 @@ class AppConfigKernel extends AppKernel
         parent::registerContainerConfiguration($loader);
 
         // Load the file with "liip_functional_test" parameters
-        $loader->load(__DIR__.'/config.yml');
+        $loader->load(__DIR__ . '/config.yml');
     }
 }
