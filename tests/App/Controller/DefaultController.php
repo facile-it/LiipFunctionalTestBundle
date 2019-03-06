@@ -6,6 +6,7 @@ namespace Facile\SymfonyFunctionalTestCase\Tests\App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
@@ -15,6 +16,11 @@ class DefaultController extends Controller
         return $this->render(
             'AcmeBundle::layout.html.twig'
         );
+    }
+
+    public function redirectAction(): RedirectResponse
+    {
+        return new RedirectResponse('/');
     }
 
     public function jsonAction(): JsonResponse

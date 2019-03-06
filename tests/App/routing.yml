@@ -2,11 +2,9 @@ facileitsymfonyfunctionaltestcase_homepage:
     path:  /
     defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::indexAction' }
 
-facileitsymfonyfunctionaltestcase_user:
-    path:  /user/{userId}
-    defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::userAction' }
-    requirements:
-        userId: \d+
+facileitsymfonyfunctionaltestcase_redirect:
+    path:  /redirect
+    defaults: { _controller: 'Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController::redirectAction' }
 
 facileitsymfonyfunctionaltestcase_json:
     path:  /json

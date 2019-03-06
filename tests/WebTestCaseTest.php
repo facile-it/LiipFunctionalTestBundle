@@ -75,6 +75,22 @@ class WebTestCaseTest extends WebTestCase
         $this->assertStatusCodeIsSuccessful($client);
     }
 
+    /**
+     * @depends testIndex
+     */
+    public function testIndexAssertIsRedirect(): void
+    {
+        $path = '/redirect';
+        $client = static::createClient();
+
+        $client->request('GET', $path);
+
+        $this->assertStatusCodeIsRedirect($client);
+    }
+
+    /**
+     * @depends testIndex
+     */
     public function testAssertStatusCodeFail(): void
     {
         $path = '/';
