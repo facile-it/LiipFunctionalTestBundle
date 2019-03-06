@@ -39,7 +39,7 @@ jobs:
       script:
         - vendor/bin/phpunit --verbose --coverage-clover=build/logs/clover.xml
       after_success:
-        - php bin/php-coveralls -v
+        - vendor/bin/php-coveralls -v
     - stage: Code style & static analysis
       name: PHP CS Fixer
       script: vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
