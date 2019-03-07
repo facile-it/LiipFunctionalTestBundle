@@ -4,38 +4,27 @@ declare(strict_types=1);
 
 namespace Facile\SymfonyFunctionalTestCase\Tests\App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpKernel\Kernel;
+use Symfony\Component\HttpKernel\KernelInterface;
 
-class TestCommand extends ContainerAwareCommand
+class TestCommand extends Command
 {
-    private $container;
+    /** @var KernelInterface */
+    private $kernel;
 
-    protected function configure(): void
+    public function __construct(KernelInterface $kernel)
     {
-        parent::configure();
-
-        $this->setName('facileitsymfonyfunctionaltestcase:test')
-            ->setDescription('Test command');
-    }
-
-    protected function initialize(InputInterface $input, OutputInterface $output): void
-    {
-        parent::initialize($input, $output);
-
-        $this->container = $this->getContainer();
+        parent::__construct('facileitsymfonyfunctionaltestcase:test');
+        $this->kernel = $kernel;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        // Symfony version check
-        $version = Kernel::VERSION_ID;
-        $output->writeln('Symfony version: ' . $version);
-        $output->writeln('Environment: ' . $this->container->get('kernel')->getEnvironment());
+        $output->writeln('Symfony version: ' . Kernel::VERSION_ID);
+        $output->writeln('Environment: ' . $this->kernel->getEnvironment());
         $output->writeln('Verbosity level set: ' . $output->getVerbosity());
-
-        $output->writeln('Environment: ' . $this->container->get('kernel')->getEnvironment());
     }
 }
