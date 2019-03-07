@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 namespace Facile\SymfonyFunctionalTestCase\Tests\App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class DefaultController
 {
     public function indexAction(): Response
     {
-        return $this->render(
-            'AcmeBundle::layout.html.twig'
-        );
+        return new Response('Hello world');
     }
 
     public function redirectAction(): RedirectResponse

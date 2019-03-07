@@ -8,6 +8,7 @@ use Facile\SymfonyFunctionalTestCase\Tests\App\AppKernel;
 use Facile\SymfonyFunctionalTestCase\WebTestCase;
 use PHPUnit\Framework\ExpectationFailedException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\HttpFoundation\Response;
 
 class WebTestCaseTest extends WebTestCase
 {
@@ -34,19 +35,12 @@ class WebTestCaseTest extends WebTestCase
         $path = '/';
         $client = static::createClient();
 
-        $crawler = $client->request('GET', $path);
+        $client->request('GET', $path);
 
-        $this->assertSame(1, $crawler->filter('html > body')->count());
-
-        $this->assertSame(
-            'Not logged in.',
-            $crawler->filter('p#user')->text()
-        );
-
-        $this->assertSame(
-            'LiipFunctionalTestBundle',
-            $crawler->filter('h1')->text()
-        );
+        $this->assertStatusCodeIsSuccessful($client);
+        $response = $client->getResponse();
+        $this->assertInstanceOf(Response::class, $response);
+        $this->assertStringContainsString('Hello world', $response->getContent());
     }
 
     /**

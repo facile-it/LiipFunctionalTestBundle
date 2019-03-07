@@ -56,6 +56,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+    Facile\SymfonyFunctionalTestCase\Tests\App\Controller\DefaultController:
+        tags: ['controller.service_arguments']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestCommand:
         tags: ['console.command']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestStatusCodeCommand:
