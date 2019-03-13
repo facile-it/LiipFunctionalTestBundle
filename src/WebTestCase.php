@@ -80,12 +80,12 @@ abstract class WebTestCase extends BaseWebTestCase
      * $client matches the expected code. If not, raises an error with more
      * information.
      */
-    public function assertStatusCode(int $expectedStatusCode, Client $client): void
+    public function assertStatusCode(int $expectedStatusCode, Client $client, string $message = ''): void
     {
         $response = $client->getResponse();
 
         $this->assertInstanceOf(Response::class, $response, 'Response missing from client');
-        $this->assertSame($expectedStatusCode, $response->getStatusCode());
+        $this->assertSame($expectedStatusCode, $response->getStatusCode(), $message);
     }
 
     protected function assertStatusCodeIsSuccessful(Client $client): void

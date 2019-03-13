@@ -98,6 +98,22 @@ class WebTestCaseTest extends WebTestCase
         $this->assertStatusCode(-1, $client);
     }
 
+    /**
+     * @depends testIndex
+     */
+    public function testAssertStatusCodeFailWithMessage(): void
+    {
+        $path = '/';
+        $client = static::createClient();
+
+        $client->request('GET', $path);
+
+        $this->expectException(ExpectationFailedException::class);
+        $this->expectExceptionMessage('Custom message');
+
+        $this->assertStatusCode(-1, $client, 'Custom message');
+    }
+
     public function test404Error(): void
     {
         $path = '/missing_page';
