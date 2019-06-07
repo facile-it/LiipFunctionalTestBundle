@@ -1,3 +1,5 @@
+pre-commit-check: code-style-fix phpstan test
+
 phpstan:
 	@vendor/bin/phpstan analyse
 
@@ -9,5 +11,3 @@ test:
 
 test-stop-on-failure:
 	@vendor/bin/phpunit --stop-on-failure
-
-pre-commit-check: code-style-fix phpstan test
