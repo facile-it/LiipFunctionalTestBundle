@@ -21,10 +21,12 @@ class TestCommand extends Command
         $this->kernel = $kernel;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $output->writeln('Symfony version: ' . Kernel::VERSION_ID);
         $output->writeln('Environment: ' . $this->kernel->getEnvironment());
         $output->writeln('Verbosity level set: ' . $output->getVerbosity());
+
+        return 0;
     }
 }

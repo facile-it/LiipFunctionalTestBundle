@@ -64,3 +64,4 @@ services:
 
 twig:
     strict_variables: true
+    exception_controller: ~
