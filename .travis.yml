@@ -4,7 +4,7 @@ php:
   - 7.1
   - 7.2
   - 7.3
-  - 7.4snapshot
+  - 7.4
 
 sudo: false
 
@@ -22,14 +22,14 @@ stages:
   - Code style & static analysis
 
 before_install:
-  - if [[ $TRAVIS_PHP_VERSION != '7.4snapshot' ]]; then phpenv config-rm xdebug.ini; fi
+  - phpenv config-rm xdebug.ini || echo "Unable to remove xDebug"
+  - if [[ $TRAVIS_PHP_VERSION != '7.1' ]]; then export SYMFONY_DEPRECATIONS_HELPER=disabled; fi
 
 install:
   - composer update --no-interaction --no-suggest --prefer-dist --prefer-stable
 
 script: 
   - vendor/bin/phpunit
-
 
 jobs:
   include:
