@@ -47,6 +47,11 @@
             "Facile\\SymfonyFunctionalTestCase\\Tests\\": "tests/"
         }
     },
+    "config": {
+        "platform": {
+            "php": "7.1.99"
+        }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.x-dev"
