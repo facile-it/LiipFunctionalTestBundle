@@ -32,7 +32,7 @@ jobs:
         SYMFONY_DEPRECATIONS_HELPER: disabled
       install:
         - composer update --prefer-lowest --no-interaction --no-suggest --prefer-dist --prefer-stable
-    - php: 7.3
+    - php: 7.1
       env:
         SYMFONY_REQUIRE: 3.4
         SYMFONY_DEPRECATIONS_HELPER: disabled
