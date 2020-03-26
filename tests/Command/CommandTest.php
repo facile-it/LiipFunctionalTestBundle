@@ -58,11 +58,4 @@ class CommandTest extends WebTestCase
 
         $this->assertSame(10, $commandTester->getStatusCode());
     }
-
-    public function tearDown(): void
-    {
-        parent::tearDown();
-
-        unset($commandTester);
-    }
 }

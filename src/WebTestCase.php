@@ -107,7 +107,7 @@ abstract class WebTestCase extends BaseWebTestCase
     protected function tearDown(): void
     {
         foreach ($this->containers as $container) {
-            if ($container instanceof ResettableContainerInterface) {
+            if (method_exists($container, 'reset')) {
                 $container->reset();
             }
         }
