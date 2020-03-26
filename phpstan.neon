@@ -3,6 +3,8 @@ parameters:
     paths:
         - src
         - tests
-includes:
-	- vendor/jangregor/phpstan-prophecy/src/extension.neon
-	- vendor/phpstan/phpstan-phpunit/extension.neon
+    ignoreErrors:
+        -
+            message: "#^Class Symfony\\\\Bundle\\\\FrameworkBundle\\\\Client not found\\.$#"
+            count: 1
+            path: src/WebTestCase.php
