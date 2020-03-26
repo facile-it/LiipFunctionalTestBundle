@@ -61,7 +61,3 @@ services:
         tags: ['console.command']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestStatusCodeCommand:
         tags: ['console.command']
-
-twig:
-    strict_variables: true
-    exception_controller: ~
