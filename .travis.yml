@@ -16,6 +16,7 @@ stages:
 
 before_install:
   - phpenv config-rm xdebug.ini || echo "Unable to remove xDebug"
+  - if [[ $TRAVIS_PHP_VERSION = '7.1' ]]; then export SYMFONY_DEPRECATIONS_HELPER=disabled; fi
   - if [ "$SYMFONY_VERSION" != "" ]; then composer config extra.symfony.require ^${SYMFONY_VERSION}; fi
 
 install:
