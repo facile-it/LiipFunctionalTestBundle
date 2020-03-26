@@ -16,7 +16,7 @@ stages:
 
 before_install:
   - phpenv config-rm xdebug.ini || echo "Unable to remove xDebug"
-  - if [ "$SYMFONY_VERSION" != "" ]; then composer config extra.symfony.require ^${SYMFONY_VERSION}; fi
+  - if [ "$SYMFONY_REQUIRE" != "" ]; then composer require global symfony/flex; fi
 
 install:
   - composer update --no-interaction --no-suggest --prefer-dist --prefer-stable
@@ -33,12 +33,12 @@ jobs:
       install:
         - composer update --prefer-lowest --no-interaction --no-suggest --prefer-dist --prefer-stable
     - env:
-        SYMFONY_VERSION: 3.4
+        SYMFONY_REQUIRE: 3.4
         SYMFONY_DEPRECATIONS_HELPER: disabled
     - env:
-        SYMFONY_VERSION: 4.4
+        SYMFONY_REQUIRE: 4.4
     - env:
-        SYMFONY_VERSION: 5
+        SYMFONY_REQUIRE: 5
     - name: Code coverage
       php: 7.3
       before_install: []
