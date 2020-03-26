@@ -4,4 +4,6 @@ vendor
 
 # Ignore files created during tests
 /cov/
+.env
 !.gitkeep
+symfony.lock

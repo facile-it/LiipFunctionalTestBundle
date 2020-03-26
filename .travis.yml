@@ -14,8 +14,6 @@ cache:
 
 matrix:
   fast_finish: true
-  allow_failures:
-    - php: 7.4snapshot
 
 stages:
   - Test
@@ -23,7 +21,7 @@ stages:
 
 before_install:
   - phpenv config-rm xdebug.ini || echo "Unable to remove xDebug"
-  - if [[ $TRAVIS_PHP_VERSION != '7.1' ]]; then export SYMFONY_DEPRECATIONS_HELPER=disabled; fi
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer config extra.symfony.require ^${$SYMFONY_VERSION}; fi
 
 install:
   - composer update --no-interaction --no-suggest --prefer-dist --prefer-stable
@@ -39,6 +37,12 @@ jobs:
         SYMFONY_DEPRECATIONS_HELPER: disabled
       install:
         - composer update --prefer-lowest --no-interaction --no-suggest --prefer-dist --prefer-stable
+    - env:
+        SYMFONY_VERSION: 3.4
+    - env:
+        SYMFONY_VERSION: 4.4
+    - env:
+        SYMFONY_VERSION: 5
     - name: Code coverage
       php: 7.3
       before_install: []
