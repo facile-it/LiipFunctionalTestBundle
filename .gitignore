@@ -6,4 +6,3 @@ vendor
 /cov/
 .env
 !.gitkeep
-symfony.lock
