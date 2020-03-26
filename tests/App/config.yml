@@ -4,7 +4,7 @@
 framework:
     secret:          secret
     test: ~
-    router:          { resource: "%kernel.project_dir%/App/routing.yml" }
+    router:          { resource: "%kernel.project_dir%/tests/App/routing.yml" }
     form:            false
     validation:      false
     csrf_protection: true

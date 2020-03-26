@@ -1,6 +1,0 @@
-# inherits configuration from ../App/config.yml
-
-framework:
-    profiler:
-        enabled: true
-        collect: true
