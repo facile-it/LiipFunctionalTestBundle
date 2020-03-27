@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
  * Fix Symfony 5 compatibility [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
  * Improve CI testing [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
+ * Increase PHPStan level to maximum (8) [0952653](https://github.com/facile-it/symfony-functional-testcase/commit/095265358f7494ed95cd0c4fc20fe6e38e5f72fe)
 
 ## 0.1.2 [2020-02-24]
 ### Added
