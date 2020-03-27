@@ -4,7 +4,7 @@
 framework:
     secret:          secret
     test: ~
-    router:          { resource: "%kernel.root_dir%/../App/routing.yml" }
+    router:          { resource: "%kernel.project_dir%/tests/App/routing.yml" }
     form:            false
     validation:      false
     csrf_protection: true
@@ -61,7 +61,3 @@ services:
         tags: ['console.command']
     Facile\SymfonyFunctionalTestCase\Tests\App\Command\TestStatusCodeCommand:
         tags: ['console.command']
-
-twig:
-    strict_variables: true
-    exception_controller: ~

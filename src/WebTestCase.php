@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace Facile\SymfonyFunctionalTestCase;
 
-use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\DependencyInjection\ResettableContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+
+if (! class_exists(KernelBrowser::class)) {
+    \class_alias(\Symfony\Bundle\FrameworkBundle\Client::class, KernelBrowser::class);
+}
 
 abstract class WebTestCase extends BaseWebTestCase
 {
@@ -80,7 +83,7 @@ abstract class WebTestCase extends BaseWebTestCase
      * $client matches the expected code. If not, raises an error with more
      * information.
      */
-    public function assertStatusCode(int $expectedStatusCode, Client $client, string $message = ''): void
+    public function assertStatusCode(int $expectedStatusCode, KernelBrowser $client, string $message = ''): void
     {
         $response = $client->getResponse();
 
@@ -88,7 +91,7 @@ abstract class WebTestCase extends BaseWebTestCase
         $this->assertSame($expectedStatusCode, $response->getStatusCode(), $message);
     }
 
-    protected function assertStatusCodeIsSuccessful(Client $client): void
+    protected function assertStatusCodeIsSuccessful(KernelBrowser $client): void
     {
         $response = $client->getResponse();
 
@@ -96,7 +99,7 @@ abstract class WebTestCase extends BaseWebTestCase
         $this->assertTrue($response->isSuccessful(), 'HTTP status code not successful: ' . $response->getStatusCode());
     }
 
-    protected function assertStatusCodeIsRedirect(Client $client): void
+    protected function assertStatusCodeIsRedirect(KernelBrowser $client): void
     {
         $response = $client->getResponse();
 
@@ -107,7 +110,7 @@ abstract class WebTestCase extends BaseWebTestCase
     protected function tearDown(): void
     {
         foreach ($this->containers as $container) {
-            if ($container instanceof ResettableContainerInterface) {
+            if (method_exists($container, 'reset')) {
                 $container->reset();
             }
         }
