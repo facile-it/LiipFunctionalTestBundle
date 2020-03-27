@@ -3,7 +3,7 @@
 [![Build status][Travis Master image]][Travis Master]
 [![Latest Stable Version](https://poser.pugx.org/facile-it/symfony-functional-testcase/v/stable)](https://packagist.org/packages/facile-it/symfony-functional-testcase)
 [![Latest Unstable Version](https://poser.pugx.org/facile-it/symfony-functional-testcase/v/unstable)](https://packagist.org/packages/facile-it/symfony-functional-testcase)
-[![Coverage Status](https://coveralls.io/repos/github/facile-it/symfony-functional-testcase/badge.svg)](https://coveralls.io/github/facile-it/symfony-functional-testcase)
+[![Codecov coverage status](https://codecov.io/gh/facile-it/symfony-functional-testcase/branch/master/graph/badge.svg)](https://codecov.io/gh/facile-it/symfony-functional-testcase)
 
 This is a small base TestCase for PHPUnit functional tests in Symfony that provides a simple `getContainer()` helper, 
 alongside with some small caching to speed up the tests. 
