@@ -4,8 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 ## Unreleased
+ * ...
+
+## 0.1.3 [2020-03-27]
  * Fix Symfony 5 compatibility [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
  * Improve CI testing [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
+ * Switch to Codecov for coverage collection [#4](https://github.com/facile-it/symfony-functional-testcase/pull/4)
  * Increase PHPStan level to maximum (8) [0952653](https://github.com/facile-it/symfony-functional-testcase/commit/095265358f7494ed95cd0c4fc20fe6e38e5f72fe)
 
 ## 0.1.2 [2020-02-24]
