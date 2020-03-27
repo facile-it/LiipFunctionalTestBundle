@@ -26,6 +26,7 @@ abstract class WebTestCase extends BaseWebTestCase
 
     /**
      * Builds up the environment to run the given command.
+     *
      * @param array<string, mixed> $params
      */
     protected function runCommand(string $name, array $params = [], bool $reuseKernel = false): CommandTester
