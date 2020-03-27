@@ -15,7 +15,6 @@ stages:
   - Code style & static analysis
 
 before_install:
-  - phpenv config-rm xdebug.ini || echo "Unable to remove xDebug"
   - if [ "$SYMFONY_REQUIRE" != "" ]; then composer global require symfony/flex; fi
 
 install:
@@ -40,13 +39,6 @@ jobs:
         SYMFONY_REQUIRE: 4.4
     - env:
         SYMFONY_REQUIRE: 5
-    - name: Code coverage
-      php: 7.3
-      before_install: []
-      script:
-        - vendor/bin/phpunit --verbose --coverage-clover=build/logs/clover.xml
-      after_success:
-        - vendor/bin/php-coveralls -v
     - stage: Code style & static analysis
       name: PHP CS Fixer
       script: vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
