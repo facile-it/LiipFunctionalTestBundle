@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase as BaseWebTestCase;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 
 if (! class_exists(KernelBrowser::class)) {
     \class_alias(\Symfony\Bundle\FrameworkBundle\Client::class, KernelBrowser::class);
@@ -25,6 +26,7 @@ abstract class WebTestCase extends BaseWebTestCase
 
     /**
      * Builds up the environment to run the given command.
+     * @param array<string, mixed> $params
      */
     protected function runCommand(string $name, array $params = [], bool $reuseKernel = false): CommandTester
     {
@@ -36,6 +38,7 @@ abstract class WebTestCase extends BaseWebTestCase
             $kernel = static::$kernel = static::createKernel(['environment' => $this->environment]);
             $kernel->boot();
         } else {
+            /** @var KernelInterface $kernel */
             $kernel = $this->getContainer()->get('kernel');
         }
 

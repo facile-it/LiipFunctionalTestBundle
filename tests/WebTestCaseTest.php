@@ -40,7 +40,9 @@ class WebTestCaseTest extends WebTestCase
         $this->assertStatusCodeIsSuccessful($client);
         $response = $client->getResponse();
         $this->assertInstanceOf(Response::class, $response);
-        $this->assertStringContainsString('Hello world', $response->getContent());
+        $content = $response->getContent();
+        $this->assertIsString($content);
+        $this->assertStringContainsString('Hello world', $content);
     }
 
     /**

@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace Facile\SymfonyFunctionalTestCase\Tests\App;
 
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\HttpKernel\Kernel;
 
 class AppKernel extends Kernel
 {
+    /**
+     * @return Bundle[]
+     */
     public function registerBundles(): array
     {
         $bundles = [
