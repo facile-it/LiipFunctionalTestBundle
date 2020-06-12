@@ -28,6 +28,10 @@ class AppKernel extends Kernel
     public function registerContainerConfiguration(LoaderInterface $loader): void
     {
         $loader->load(__DIR__ . '/config.yml');
+
+        if (self::VERSION_ID >= 50000) {
+            $loader->load(__DIR__ . '/config_5.yml');
+        }
     }
 
     public function getCacheDir(): string

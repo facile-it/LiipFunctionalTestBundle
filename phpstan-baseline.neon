@@ -6,6 +6,11 @@ parameters:
 			path: src/WebTestCase.php
 
 		-
+			message: "#^Comparison operation \"\\>\\=\" between 50100 and 50000 is always true\\.$#"
+			count: 1
+			path: tests/App/AppKernel.php
+
+		-
 			message: "#^Parameter \\#1 \\$callable of static method Doctrine\\\\Common\\\\Annotations\\\\AnnotationRegistry\\:\\:registerLoader\\(\\) expects callable\\(\\)\\: mixed, array\\(mixed, 'loadClass'\\) given\\.$#"
 			count: 1
 			path: tests/App/bootstrap.php
@@ -14,3 +19,4 @@ parameters:
 			message: "#^Call to method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNull\\(\\) with int will always evaluate to false\\.$#"
 			count: 1
 			path: tests/Command/CommandTest.php
+
