@@ -25,11 +25,11 @@ abstract class WebTestCase extends BaseWebTestCase
     protected $containers = [];
 
     /**
-     * Builds up the environment to run the given command.
-     *
-     * @param array<string, mixed> $params
+     * Returns a CommandTester for the console command with the provided name.
+     * It allows to reuse the same kernel that the test uses, so that you can
+     * reach in if needed.
      */
-    protected function runCommand(string $name, array $params = [], bool $reuseKernel = false): CommandTester
+    protected function prepareCommandTester(string $name, bool $reuseKernel = false): CommandTester
     {
         if (! $reuseKernel) {
             if (null !== static::$kernel) {
@@ -44,11 +44,21 @@ abstract class WebTestCase extends BaseWebTestCase
         }
 
         $application = new Application($kernel);
-
         $command = $application->find($name);
-        $commandTester = new CommandTester($command);
+
+        return new CommandTester($command);
+    }
+
+    /**
+     * Builds up the environment to run the given command.
+     *
+     * @param array<string, mixed> $params
+     */
+    protected function runCommand(string $name, array $params = [], bool $reuseKernel = false): CommandTester
+    {
+        $commandTester = $this->prepareCommandTester($name, $reuseKernel);
         $commandTester->execute(
-            array_merge(['command' => $command->getName()], $params),
+            $params,
             [
                 'interactive' => false,
             ]

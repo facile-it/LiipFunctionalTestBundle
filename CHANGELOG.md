@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## Unreleased
  * ...
 
+## 0.1.4 [2020-06-12]
+ * Add `prepareCommandTester`, to be used in place of `runCommand` to obtain the `CommandTester` before the `execute` call [b941c50](https://github.com/facile-it/symfony-functional-testcase/commit/b941c500a270acdd34c8479440d3c710ca667d1f)
+
 ## 0.1.3 [2020-03-27]
  * Fix Symfony 5 compatibility [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
  * Improve CI testing [#3](https://github.com/facile-it/symfony-functional-testcase/pull/3)
