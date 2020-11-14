@@ -43,7 +43,7 @@ class CommandTest extends WebTestCase
 
         // Run command and not reuse kernel
         $this->environment = 'prod';
-        $commandTester = $this->runCommand('facileitsymfonyfunctionaltestcase:test', [], true);
+        $commandTester = $this->runCommand('facileitsymfonyfunctionaltestcase:test', [], false);
 
         $this->assertInstanceOf(CommandTester::class, $commandTester);
 
