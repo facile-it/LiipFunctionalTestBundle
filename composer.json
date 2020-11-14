@@ -24,7 +24,7 @@
         "symfony/framework-bundle": "^3.4|^4.0|^5.0"
     },
     "require-dev": {
-        "facile-it/facile-coding-standard": "^0.3.1",
+        "facile-it/facile-coding-standard": "^0.4",
         "jangregor/phpstan-prophecy": "^0.6.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.28",
