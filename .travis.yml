@@ -33,12 +33,12 @@ jobs:
         - composer update --prefer-lowest --no-interaction --no-suggest --prefer-dist --prefer-stable
     - php: 7.2
       env:
-        SYMFONY_REQUIRE: 3.4
+        SYMFONY_REQUIRE: ^3.4
         SYMFONY_DEPRECATIONS_HELPER: disabled
     - env:
-        SYMFONY_REQUIRE: 4.4
+        SYMFONY_REQUIRE: ^4.4
     - env:
-        SYMFONY_REQUIRE: 5
+        SYMFONY_REQUIRE: ^5
     - stage: Code style & static analysis
       name: PHP CS Fixer
       script: vendor/bin/php-cs-fixer fix --verbose --diff --dry-run
