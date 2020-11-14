@@ -20,9 +20,9 @@ jobs:
         composer_option: ['']
         experimental: [false]
         include:
-          - description: 'nightly'
-            os: 'ubuntu-latest'
-            php: '8.0'
+#          - description: 'nightly'
+#            os: 'ubuntu-latest'
+#            php: '8.0'
           - description: '--prefer lowest'
             os: 'ubuntu-latest'
             php: '7.2'
