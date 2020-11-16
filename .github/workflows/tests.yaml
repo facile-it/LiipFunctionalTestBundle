@@ -10,11 +10,11 @@ jobs:
   Tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental == true }}
+    env:
+      SYMFONY_DEPRECATIONS_HELPER: 'max[self]=0'
     strategy:
       matrix:
         os: ['ubuntu-latest']
-        env:
-          SYMFONY_DEPRECATIONS_HELPER: 'max[self]=0'
         php:
           - '7.4'
           - '7.3'
