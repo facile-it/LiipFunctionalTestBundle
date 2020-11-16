@@ -58,7 +58,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          coverage: pcov
+          coverage: xdebug
       - run: if [ "$SYMFONY_REQUIRE" != "" ]; then composer global require symfony/flex; fi
       - run: composer update --no-progress --ansi ${{ matrix.composer_option }}
       - run: vendor/bin/phpunit --coverage-clover=coverage.xml
