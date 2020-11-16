@@ -59,7 +59,7 @@ jobs:
           coverage: pcov
       - run: if [ "$SYMFONY_REQUIRE" != "" ]; then composer global require symfony/flex; fi
       - run: composer update --no-progress --ansi ${{ matrix.composer_option }}
-      - run: vendor/bin/phpunit --coverage-clover=coverage.xml
+      - run: echo $SYMFONY_DEPRECATIONS_HELPER; vendor/bin/phpunit --coverage-clover=coverage.xml
       - uses: codecov/codecov-action@v1
         with:
           file: './coverage.xml'
