@@ -1,6 +1,6 @@
 # facile-it/symfony-functional-testcase
 
-[![Build status][Travis Master image]][Travis Master]
+![Build status](https://github.com/facile-it/symfony-functional-testcase/workflows/CI/badge.svg)
 [![Latest Stable Version](https://poser.pugx.org/facile-it/symfony-functional-testcase/v/stable)](https://packagist.org/packages/facile-it/symfony-functional-testcase)
 [![Latest Unstable Version](https://poser.pugx.org/facile-it/symfony-functional-testcase/v/unstable)](https://packagist.org/packages/facile-it/symfony-functional-testcase)
 [![Codecov coverage status](https://codecov.io/gh/facile-it/symfony-functional-testcase/branch/master/graph/badge.svg)](https://codecov.io/gh/facile-it/symfony-functional-testcase)
@@ -72,6 +72,3 @@ $this->assertStatusCode(302, $client);
 
 ## Command Tests
 TODO document `runCommand`
-
-[Travis Master]: https://travis-ci.org/facile-it/symfony-functional-testcase
-[Travis Master image]: https://travis-ci.org/facile-it/symfony-functional-testcase.svg?branch=master
