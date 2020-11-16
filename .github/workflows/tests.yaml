@@ -13,6 +13,8 @@ jobs:
     strategy:
       matrix:
         os: ['ubuntu-latest']
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: 'max[self]=0'
         php:
           - '7.4'
           - '7.3'
@@ -28,7 +30,7 @@ jobs:
             php: '7.2'
             env:
               SYMFONY_REQUIRE: '^3.4'
-              SYMFONY_DEPRECATIONS_HELPER: disabled
+              SYMFONY_DEPRECATIONS_HELPER: 'disabled'
           - description: 'Symfony 4.4'
             os: 'ubuntu-latest'
             php: '7.4'
@@ -44,7 +46,7 @@ jobs:
             php: '7.2'
             composer_option: '--prefer-lowest'
             env:
-              SYMFONY_DEPRECATIONS_HELPER: disabled
+              SYMFONY_DEPRECATIONS_HELPER: 'disabled'
 
     name: PHP ${{ matrix.php }} ${{ matrix.description }}
     steps:
@@ -59,7 +61,7 @@ jobs:
           coverage: pcov
       - run: if [ "$SYMFONY_REQUIRE" != "" ]; then composer global require symfony/flex; fi
       - run: composer update --no-progress --ansi ${{ matrix.composer_option }}
-      - run: echo $SYMFONY_DEPRECATIONS_HELPER; vendor/bin/phpunit --coverage-clover=coverage.xml
+      - run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - uses: codecov/codecov-action@v1
         with:
           file: './coverage.xml'
