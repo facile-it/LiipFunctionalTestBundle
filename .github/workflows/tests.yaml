@@ -15,7 +15,7 @@ jobs:
           - '7.4'
           - '7.3'
           - '7.2'
-        composer_option: ['']
+        dependencies: ['highest']
         include:
 #          - description: 'nightly'
 #            php: '8.0'
@@ -24,11 +24,8 @@ jobs:
             symfony_require: '^3.4'
             deprecations: 'disabled'
           - description: 'Symfony 4.4'
-            php: '7.4'
+            php: '7.2'
             symfony_require: '^4.4'
-          - description: 'Symfony 5'
-            php: '7.4'
-            symfony_require: '^5'
           - description: '(prefer lowest)'
             php: '7.2'
             dependencies: 'lowest'
