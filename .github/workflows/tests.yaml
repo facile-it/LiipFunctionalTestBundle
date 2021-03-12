@@ -10,8 +10,6 @@ jobs:
   Tests:
     runs-on: ${{ matrix.os }}
     continue-on-error: ${{ matrix.experimental == true }}
-    env:
-      SYMFONY_DEPRECATIONS_HELPER: 'max[self]=0'
     strategy:
       matrix:
         os: ['ubuntu-latest']
@@ -28,19 +26,16 @@ jobs:
           - description: 'Symfony 3.4'
             os: 'ubuntu-latest'
             php: '7.2'
-            env:
-              SYMFONY_REQUIRE: '^3.4'
-              SYMFONY_DEPRECATIONS_HELPER: 'disabled'
+            symfony_require: '^3.4'
+            deprecations: 'disabled'
           - description: 'Symfony 4.4'
             os: 'ubuntu-latest'
             php: '7.4'
-            env:
-              SYMFONY_REQUIRE: '^4.4'
+            symfony_require: '^4.4'
           - description: 'Symfony 5'
             os: 'ubuntu-latest'
             php: '7.4'
-            env:
-              SYMFONY_REQUIRE: '^5'
+            symfony_require: '^5'
           - description: '--prefer lowest'
             os: 'ubuntu-latest'
             php: '7.2'
@@ -59,7 +54,10 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           coverage: xdebug
-      - run: if [ "$SYMFONY_REQUIRE" != "" ]; then composer global require symfony/flex; fi
+      - run: composer global require symfony/flex
+        if: matrix.symfony_require
+        env:
+          SYMFONY_REQUIRE: ${{ matrix.symfony_require }}
       - run: composer update --no-progress --ansi ${{ matrix.composer_option }}
       - run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - uses: codecov/codecov-action@v1
