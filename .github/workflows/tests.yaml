@@ -24,7 +24,7 @@ jobs:
             dependencies: 'highest'
             deprecations: 'disabled'
           - description: 'Symfony 4.4'
-            php: '7.2'
+            php: '7.3'
             symfony_require: '^4.4'
           - description: '(prefer lowest)'
             php: '7.2'
