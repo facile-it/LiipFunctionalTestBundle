@@ -28,6 +28,7 @@ jobs:
             symfony_require: '^4.4'
           - description: '(prefer lowest)'
             php: '7.2'
+            symfony_require: '3.4.0'
             dependencies: 'lowest'
             deprecations: 'disabled'
 
