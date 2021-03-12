@@ -64,6 +64,5 @@ class CommandTest extends WebTestCase
         $commandTester = $this->prepareCommandTester('facileitsymfonyfunctionaltestcase:test-status-code');
 
         $this->assertInstanceOf(CommandTester::class, $commandTester);
-        $this->assertNull($commandTester->getStatusCode());
     }
 }
