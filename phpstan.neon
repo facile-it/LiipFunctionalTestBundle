@@ -6,6 +6,8 @@ parameters:
     paths:
         - src
         - tests
+    dynamicConstantNames:
+        - Symfony\Component\HttpKernel\Kernel::VERSION
     ignoreErrors:
         -
             message: "#^Class Symfony\\\\Bundle\\\\FrameworkBundle\\\\Client not found\\.$#"
