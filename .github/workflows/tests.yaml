@@ -35,10 +35,10 @@ jobs:
             os: 'ubuntu-latest'
             php: '7.4'
             symfony_require: '^5'
-          - description: '--prefer lowest'
+          - description: '(prefer lowest)'
             os: 'ubuntu-latest'
             php: '7.2'
-            composer_option: '--prefer-lowest'
+            dependencies: 'lowest'
             deprecations: 'disabled'
 
     name: PHP ${{ matrix.php }} ${{ matrix.description }}
@@ -46,19 +46,17 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 2
-      - uses: actions/cache@v2
-        with:
-          path: ~/.composer/cache/files
-          key: ${{ matrix.php }}${{ matrix.composer_option }} 
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
           coverage: xdebug
-      - run: composer global require symfony/flex
+      - name: Restrict Symfony version
+        run: composer require "symfony/symfony:${{ matrix.symfony_require }}" --no-update
         if: matrix.symfony_require
-        env:
-          SYMFONY_REQUIRE: ${{ matrix.symfony_require }}
-      - run: composer update --no-progress --ansi ${{ matrix.composer_option }}
+      - name: Install dependencies
+        uses: "ramsey/composer-install@v1"
+        with:
+          dependency-versions: ${{ matrix.dependencies }}
       - run: vendor/bin/phpunit --coverage-clover=coverage.xml
       - uses: codecov/codecov-action@v1
         with:
