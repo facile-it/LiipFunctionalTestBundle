@@ -8,11 +8,10 @@ on:
 
 jobs:
   Tests:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental == true }}
     strategy:
       matrix:
-        os: ['ubuntu-latest']
         php:
           - '7.4'
           - '7.3'
@@ -40,12 +39,13 @@ jobs:
             os: 'ubuntu-latest'
             php: '7.2'
             composer_option: '--prefer-lowest'
-            env:
-              SYMFONY_DEPRECATIONS_HELPER: 'disabled'
+            deprecations: 'disabled'
 
     name: PHP ${{ matrix.php }} ${{ matrix.description }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - uses: actions/cache@v2
         with:
           path: ~/.composer/cache/files
