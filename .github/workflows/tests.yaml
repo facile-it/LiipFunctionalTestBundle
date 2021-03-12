@@ -9,7 +9,6 @@ on:
 jobs:
   Tests:
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental == true }}
     strategy:
       matrix:
         php:
@@ -17,26 +16,20 @@ jobs:
           - '7.3'
           - '7.2'
         composer_option: ['']
-        experimental: [false]
         include:
 #          - description: 'nightly'
-#            os: 'ubuntu-latest'
 #            php: '8.0'
           - description: 'Symfony 3.4'
-            os: 'ubuntu-latest'
             php: '7.2'
             symfony_require: '^3.4'
             deprecations: 'disabled'
           - description: 'Symfony 4.4'
-            os: 'ubuntu-latest'
             php: '7.4'
             symfony_require: '^4.4'
           - description: 'Symfony 5'
-            os: 'ubuntu-latest'
             php: '7.4'
             symfony_require: '^5'
           - description: '(prefer lowest)'
-            os: 'ubuntu-latest'
             php: '7.2'
             dependencies: 'lowest'
             deprecations: 'disabled'
@@ -57,7 +50,10 @@ jobs:
         uses: "ramsey/composer-install@v1"
         with:
           dependency-versions: ${{ matrix.dependencies }}
-      - run: vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Run tests
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
+        env:
+          SYMFONY_DEPRECATIONS_HELPER: ${{ matrix.deprecations }}
       - uses: codecov/codecov-action@v1
         with:
           file: './coverage.xml'
