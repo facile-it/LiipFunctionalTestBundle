@@ -11,7 +11,6 @@ framework:
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
-        storage_id: session.storage.mock_file
         # https://groups.google.com/forum/#!topic/symfony2/IB-CpMgo5o0
         name: MOCKSESSID
     profiler:
@@ -27,29 +26,6 @@ monolog:
             type:  stream
             path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
-
-security:
-    encoders:
-        # in_memory users
-        Symfony\Component\Security\Core\User\User: plaintext
-        # User entity
-        Facile\SymfonyFunctionalTestCase\Tests\App\Entity\User: plaintext
-    providers:
-        in_memory:
-            memory:
-                users:
-                    foobar:
-                        password: "12341234"
-                        roles: 'ROLE_USER'
-    firewalls:
-        secured_area:
-            pattern:  ^/
-            anonymous: true
-            http_basic:
-                realm: "Admin Area"
-            provider: in_memory
-    access_control:
-        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
 services:
     _defaults:

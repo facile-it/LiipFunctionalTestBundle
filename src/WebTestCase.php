@@ -16,6 +16,9 @@ if (! class_exists(KernelBrowser::class)) {
     \class_alias(\Symfony\Bundle\FrameworkBundle\Client::class, KernelBrowser::class);
 }
 
+/**
+ * @method ContainerInterface getContainer()
+ */
 abstract class WebTestCase extends BaseWebTestCase
 {
     /** @var string */
@@ -68,10 +71,30 @@ abstract class WebTestCase extends BaseWebTestCase
     }
 
     /**
+     * Keep support of Symfony < 5.3.
+     *
+     * @see https://github.com/liip/LiipFunctionalTestBundle/pull/584
+     *
+     * @param mixed|null $arguments
+     */
+    public function __call(string $name, $arguments): ContainerInterface
+    {
+        if ('getContainer' === $name) {
+            if (method_exists(parent::class, $name)) {
+                return parent::getContainer();
+            }
+
+            return $this->getDependencyInjectionContainer();
+        }
+
+        throw new \Exception("Method {$name} is not supported.");
+    }
+
+    /**
      * Get an instance of the dependency injection container.
      * (this creates a kernel *without* parameters).
      */
-    protected function getContainer(): ContainerInterface
+    protected function getDependencyInjectionContainer(): ContainerInterface
     {
         $cacheKey = $this->environment;
         if (empty($this->containers[$cacheKey])) {
